@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ximxin&#39;s Blog</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Ximxin,"> 
+    
+    <meta name="author" content="Ximxin"> 
+    <link rel="alternative" href="atom.xml" title="Ximxin&#39;s Blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">搭建Windows Server 2008虚拟机</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">搭建Windows Server 2008虚拟机</h1>
+        <div class="stuff">
+            <span>十月 02, 2018</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h3 style="font-weight: bold">前言：</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008是微软一个服务器操作系统的名称，它继承Windows Server 2003 R2。Windows Server 2008在进行开发及测试时的代号为”Windows Server Longhorn”。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008 发行了多种版本，以支持各种规模的企业对服务器不断变化的需求。Windows Server 2008 有 5 种不同版本，另外还有三个不支持 Windows Server Hyper-V 技术的版本，因此总共有 8 种版本。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008 Standard 是迄今最稳固的 Windows Server 操作系统，其内置的强化 Web 和虚拟化功能，是专为增加服务器基础架构的可靠性和弹性而设计，亦可节省时间及降低成本。其系利用功能强大的工具，让您拥有更好的服务器控制能力，并简化设定和管理工作；而增强的安全性功能则可强化操作系统，以协助保护数据和网路，并可为您的企业提供扎实且可高度信赖的基础。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008 Enterprise 可提供企业级的平台，部署企业关键应用。其所具备的群集和热添加（Hot-Add）处理器功能，可协助改善可用性，而整合的身份管理功能，可协助改善安全性，利用虚拟化授权权限整合应用程序，则可减少基础架构的成本，因此 Windows Server 2008 Enterprise 能为高度动态、可扩充的IT基础架构，提供良好的基础。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008 Datacenter 所提供的企业级平台，可在小型和大型服务器上部署具企业关键应用及大规模的虚拟化。其所具备的群集和动态硬件分割功能，可改善可用性，而通过无限制的虚拟化许可授权来巩固应用，可减少基础架构的成本。此外，此版本亦可支持 2 到 64 颗处理器，因此 Windows Server 2008 Datacenter 能够提供良好的基础，用以建立企业级虚拟化和扩充解决方案。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Web Server 2008 是特别为单一用途 Web 服务器而设计的系统，而且是建立在下一代 Windows Server 2008 中，坚若磐石之 Web 基础架构功能的基础上，其整合了重新设计架构的 IIS 7.0、ASP .NET 和 Microsoft NET Framework，以便提供任何企业快速部署网页、网站、Web 应用程序和 Web 服务。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2008 for Itanium-Based Systems 已针对大型数据库、各种企业和自订应用程序进行优化，可提供高可用性和多达64颗处理器的可扩充性，能符合高要求且具关键性的解决方案的需求。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows HPC Server 2008 是下一代高性能计算（HPC）平台，可提供企业级的工具给高生产力的 HPC 环境，由于其建立于 Windows Server 2008 及 64 位元技术上，因此可有效地扩充至数以千计的处理器，并可提供集中管理控制台，协助您主动监督和维护系统健康状况及稳定性。其所具备的灵活的作业调度功能，可让 Windows 和 Linux 的 HPC 平台间进行整合，亦可支持批量作业以及服务导向架构（SOA）工作负载，而增强的生产力、可扩充的性能以及使用容易等特色，则可使 Windows HPC Server 2008 成为同级中最佳的 Windows 环境。</p>
+<p></p><h3 style="font-weight: bold">开始安装：</h3><p></p>
+<p></p><h3>第一步：</h3><br>打开我们的VMware Workstation Pro点击主页选择新建虚拟机，如下图。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware.png" alt="This is a image"><br>点击新建虚拟机后会出现如下程序框，我们选中自定义（高级）复选框，然后点击下一步。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_2.PNG" alt="This is a image"><p></p>
+<p></p><h3>第二部：</h3><br>接下来我们接着上面讲，没有提到的部分可直接点击下一步。<br>下面选择安装虚拟机方式，我们选择第二项“安装程序光盘映像文件(iso)”复选框，然后点击下一步。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_3.PNG" alt="This is a image"><br>接下来需要输入产品密钥，我们从U盘中的“windows server 2008密钥.docx”文件中选择“Windows Server 2008 R2企业版、标准版”或“Windows Server 2008 企业版、标准版”下的任一密钥即可。<br>复制好密钥后我们粘贴到Windows 产品密钥(k)下的文本框内，随后在“要安装的 Windows 版本(v)”下选择Windows Server 2008 Enterprise版本，如下图，最后点击下一步。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_4.PNG" alt="This is a image"><br>选择虚拟机的性能，这个要看自己的电脑配置而决定，不能盲目选择，以免出现死机现象。<br>一般按照默认的来就行。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_5.PNG" alt="This is a image"><br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_6.PNG" alt="This is a image"><br>下面选择网络类型，这里我们选择桥接类型<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_7.PNG" alt="This is a image"><br>给虚拟机分配磁盘，我这里是按照默认设置的40GB的磁盘，大家随意即可，然后就是选中将“虚拟磁盘储存为单个文件”复选框即可进入下一步。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_8.PNG" alt="This is a image"><p></p>
+<p></p><h3>第三步：</h3><br>也是最后一步，最重要的一步。<br>下面我们点击完成按钮，即可进入安装。如下图：<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_9.PNG" alt="This is a image"><br>进入安装后切记不可急躁，以免功亏一篑。静静的等待安装完成即可。<br>安装完成后就是这个样纸的，我这里设置了些东西可能不一样，但大致都差不多。<br><img src="/搭建Windows-Server-2008虚拟机/New_VMware_11.PNG" alt="This is a image"><br>最后祝大家国庆假期玩的愉快！<p></p>
+<p><hr><br>Copyright by <a href="https://coding.net/u/Ximxin" style="font-weight: bold" target="_blank" rel="noopener">Ximxin</a>. | Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" rel="noopener">Coding Pages</a></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci='238417af891cd494a034'
+        data-cs='d4558e5b011b8ac16dd70ecce31f5ee53b93a351'
+        data-r='Ximxin.github.io'
+        data-o='Ximxin'
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">开始安装：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">第一步：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">第二部：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">第三步：</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
